@@ -168,16 +168,20 @@ If the impersonation token was never explicitly revoked (using the ``DELETE /aut
 User interface
 --------------
 
-If it detects that the user has ``admin:token`` scope (via, for example, using the ``/auth/api/v1/login`` route), Squareone will provide a user interface to start user impersonation.
+If it detects that the user has ``admin:token`` scope (via, for example, using the ``/auth/api/v1/login`` route), Squareone_ will provide a user interface to start user impersonation.
 Under the hood, this will make the ``PUT`` API call to ``/auth/api/v1/impersonation``.
 Since this is authenticated with a session cookie, a CSRF token must be included in the ``X-CSRF-Token`` HTTP header.
 This CSRF token can be obtained from the ``/auth/api/v1/login`` route.
+
+.. _Squareone: https://github.com/lsst-sqre/squareone
 
 (While Squareone does not currently use the ``/auth/api/v1/login`` route, it will need to use it once it takes over providing the token management UI, so this work will be reusable as part of that effort.)
 
 If user impersonation is currently enabled, Squareone will display a banner at the top of web pages it generates indicating that the user is currently impersonating another user and including the username of the user being impersonated.
 This information can be obtained from the ``/auth/api/v1/user-info`` or ``/auth/api/v1/token-info`` routes.
+
 The banner should provide a way to stop impersonation, which if used should make the ``DELETE`` API call to ``/auth/api/v1/impersonation``.
+This call will also require a CSRF token.
 
 The user's tokens shown in the token management UI will include impersonation tokens.
 Those lines should include the username of the user doing the impersonation.
