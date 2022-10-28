@@ -142,13 +142,16 @@ Three new API routes will be added, intended for use by the UI (see :ref:`ui`):
 
     Otherwise, a new token (with the ``impersonator`` data field set) will be created for the impersonated user, and the session cookie will be updated to add that token to the ``impersonation`` field.
     This new token will have a lifetime equal to the maximum impersonation lifetime, which will be a configurable setting in Gafaelfawr.
-    The server will then reply with 200 and the same JSON body as ``GET /auth/api/v1/impersonation``.
+    Gafaelfawr will then reply with 200 and the same JSON body as ``GET /auth/api/v1/impersonation``.
+
+    Gafaelfawr will send a Slack alert with the impersonator, the impersonated user, and the expiration date and time of the impersonation on success.
 
 ``DELETE /auth/api/v1/impersonation``
     Stop impersonating a user.
 
     If no user is currently being impersonated, responds with a 404 error.
-    Otherwise, the impersonation token will be revoked, the user's cookie will be updated to remove the extra token, and the server will respond with 204.
+    Otherwise, the impersonation token will be revoked, the user's cookie will be updated to remove the extra token, and Gafaelfawr will respond with 204.
+    In this case, Gafaelfawr will send a Slack alert saying that the impersonation has ended.
 
 Logging
 -------
@@ -157,6 +160,8 @@ All Gafaelfawr_ log messages from operations authenticated with an impersonation
 
 Applications that already obtain information about the user's token using the ``/auth/api/v1/token-info`` or ``/auth/api/v1/user-info`` routes may also include the ``impersonator`` information in log messages if it is convenient.
 However, they do not need to do this; we can rely on the Gafaelfawr logs to understand what actions were taken by an impersonator.
+
+If the impersonation token was never explicitly revoked (using the ``DELETE /auth/api/v1/impersonation`` API call), but the periodic maintenance cron job detects that an impersonation token has expired, it will send a Slack alert saying that the impersonation has expired.
 
 .. _ui:
 
