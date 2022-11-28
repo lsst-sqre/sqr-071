@@ -13,7 +13,7 @@ serial_number: "071"
 doc_id: "SQR-071"
 
 # Title of the document, without the series/serial designation
-doc_title: "RSP Notebook Aspect spawner design"
+doc_title: "RSP user impersonation"
 
 # Author names, ordered as a list. Each author name should be formatted as 'First Last'
 authors:
@@ -37,14 +37,21 @@ authors:
 copyright: "2022, Association of Universities for Research in Astronomy, Inc. (AURA)"
 
 # Description. A short, 1-2 sentence statemement used by document indices.
-description: "Proposes a design for spawning Notebook Aspect lab pods via a separate authenticated web service rather than internally in JupyterHub. This permits a significant reduction in the required privileges of JupyterHub and provides a simpler way to add local policy controls and custom spawner menus."
+description: >-
+  Proposed design for user impersonation by administrators on the Rubin
+  Science Platform.
 
 # Abstract, if available
-# abstract: >
-#           Write your paragraph
-#           here with multiple lines.
-#
-#           You can have multiple paragraphs too.
+abstract: >-
+  In normal operation, the Rubin Science Platform will authenticate a user via
+  an external identity provider and ensure that all actions by that user are
+  associated with that identity. However, there are cases, such as debugging
+  user problems or dealing with certain types of security issues, where it is
+  invaluable for an administrator to be able to access the Science Platform as
+  if they were another user. They can then see exactly what that user would
+  see and make changes as the user to fix problems. This tech note proposes a
+  design for implementing user impersonation in Gafaelfawr, the authentication
+  system for the Science Platform.
 
 # URL where this document is published by Read the Docs. e.g. http://sqr-001.lsst.codes
 url: "https://sqr-071.lsst.io"

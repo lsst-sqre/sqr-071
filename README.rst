@@ -14,7 +14,7 @@ RSP Notebook Aspect spawner design
 SQR-071
 =======
 
-Proposes a design for spawning Notebook Aspect lab pods via a separate authenticated web service rather than internally in JupyterHub. This permits a significant reduction in the required privileges of JupyterHub and provides a simpler way to add local policy controls and custom spawner menus.
+Proposed design for user impersonation by administrators on the Rubin Science Platform.
 
 **Links:**
 
