@@ -41,7 +41,7 @@ This token will be used as the basis for authentication and access control while
 Requirements
 ============
 
-It is already possible, using a token with ``admin:scope``, to create a user token for an arbitrary user.
+It is already possible, using a token with ``admin:token``, to create a user token for an arbitrary user.
 This allows impersonation of arbitrary users to API services authenticated with bearer tokens.
 However, it is not possible for an administrator to put such a token in a browser cookie, and it is therefore difficult to use such tokens for access to browser-based services such as the Notebook Aspect or the Portal Aspect.
 
