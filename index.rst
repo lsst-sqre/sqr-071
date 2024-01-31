@@ -1,16 +1,17 @@
-:tocdepth: 1
+######################
+RSP user impersonation
+######################
 
-Abstract
-========
+.. abstract::
 
-In normal operation, the Rubin Science Platform will authenticate a user via an external identity provider and ensure that all actions by that user are associated with that identity.
-However, there are cases, such as debugging user problems or dealing with certain types of security issues, where it is invaluable for an administrator to be able to access the Science Platform as if they were another user.
-They can then see exactly what that user would see and make changes as the user to fix problems.
+   In normal operation, the Rubin Science Platform will authenticate a user via an external identity provider and ensure that all actions by that user are associated with that identity.
+   However, there are cases, such as debugging user problems or dealing with certain types of security issues, where it is invaluable for an administrator to be able to access the Science Platform as if they were another user.
+   They can then see exactly what that user would see and make changes as the user to fix problems.
 
-This tech note proposes a design for implementing user impersonation in Gafaelfawr_, the authentication system for the Science Platform.
-It focuses on user impersonation to services used via the browser, such as the Notebook Aspect and the Portal Aspect.
-Impersonation of users to API services using bearer tokens is already possible by creating a new token for that user.
-This will not be changed by this proposal.
+   This tech note proposes a design for implementing user impersonation in Gafaelfawr_, the authentication system for the Science Platform.
+   It focuses on user impersonation to services used via the browser, such as the Notebook Aspect and the Portal Aspect.
+   Impersonation of users to API services using bearer tokens is already possible by creating a new token for that user.
+   This will not be changed by this proposal.
 
 .. _Gafaelfawr: https://gafaelfawr.lsst.io/
 
